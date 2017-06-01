@@ -24,8 +24,8 @@ namespace Project_Cows.Source.System
 
         // Methods
         public static void LoadContent() {
-			menuMusic = GraphicsHandler.m_content.Load<Song>("Audio/Music/menuMusic");
-			raceMusic = GraphicsHandler.m_content.Load<Song>("Audio/Music/raceMusic");
+			//menuMusic = GraphicsHandler.m_content.Load<Song>("Audio/Music/menuMusic");
+			//raceMusic = GraphicsHandler.m_content.Load<Song>("Audio/Music/raceMusic");
 
             vehicleEngine = GraphicsHandler.m_content.Load<SoundEffect>("Audio/SFX/Vehicles/vehicleEngine");
             vehicleBrake = GraphicsHandler.m_content.Load<SoundEffect>("Audio/SFX/Vehicles/vehicleBrake");

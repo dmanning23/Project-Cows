@@ -131,8 +131,8 @@ namespace Project_Cows.Source.Application {
             // Initialise sprites
            
 			// Music
-			MediaPlayer.Play(AudioHandler.raceMusic);
-			MediaPlayer.IsRepeating = true;
+			//MediaPlayer.Play(AudioHandler.raceMusic);
+			//MediaPlayer.IsRepeating = true;
 
 			countdownBeeps = AudioHandler.countdownBeeps.CreateInstance();
 

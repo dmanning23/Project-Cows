@@ -174,8 +174,8 @@ namespace Project_Cows.Source.Application {
 
 
 			// Play song
-			MediaPlayer.Play(AudioHandler.menuMusic);
-			MediaPlayer.IsRepeating = true;
+			//MediaPlayer.Play(AudioHandler.menuMusic);
+			//MediaPlayer.IsRepeating = true;
 
 
 			// Set menu screen
