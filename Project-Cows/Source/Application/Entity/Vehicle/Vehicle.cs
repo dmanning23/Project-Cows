@@ -20,13 +20,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 
-using FarseerPhysics.Dynamics;
-using FarseerPhysics.Dynamics.Joints;
-using FarseerPhysics.Factories;
-
 using Project_Cows.Source.System;
 using Project_Cows.Source.System.Graphics;
 using Project_Cows.Source.System.Graphics.Sprites;
+using FarseerPhysics.Portable.Dynamics.Joints;
+using FarseerPhysics.Portable.Dynamics;
+using FarseerPhysics.Portable.Factories;
 
 namespace Project_Cows.Source.Application.Entity.Vehicle {
     class Vehicle {
@@ -54,16 +53,16 @@ namespace Project_Cows.Source.Application.Entity.Vehicle {
             m_vehicleBody.GetBody().LinearDamping = 1;
 
             // Initialise the vehicle's wheels
-            Vector2 frontLeftPosition = FarseerPhysics.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()) + new Vector2(-m_vehicleBody.GetSprite().GetWidth() / 2, -m_vehicleBody.GetSprite().GetHeight() / 2);
+            Vector2 frontLeftPosition = FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()) + new Vector2(-m_vehicleBody.GetSprite().GetWidth() / 2, -m_vehicleBody.GetSprite().GetHeight() / 2);
             m_vehicleTyres.Add(new Tyre(System.Input.Quadrent.TOP_LEFT, world_, frontLeftPosition, m_vehicleBody.GetRotationDegrees()));
 
-            Vector2 frontRightPosition = FarseerPhysics.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()) + new Vector2(m_vehicleBody.GetSprite().GetWidth() / 2, -m_vehicleBody.GetSprite().GetHeight() / 2);
+            Vector2 frontRightPosition = FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()) + new Vector2(m_vehicleBody.GetSprite().GetWidth() / 2, -m_vehicleBody.GetSprite().GetHeight() / 2);
             m_vehicleTyres.Add(new Tyre(System.Input.Quadrent.TOP_RIGHT, world_, frontRightPosition, m_vehicleBody.GetRotationDegrees()));
 
-            Vector2 backLeftPosition = FarseerPhysics.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()) + new Vector2(-m_vehicleBody.GetSprite().GetWidth() / 2, m_vehicleBody.GetSprite().GetHeight() / 2);
+            Vector2 backLeftPosition = FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()) + new Vector2(-m_vehicleBody.GetSprite().GetWidth() / 2, m_vehicleBody.GetSprite().GetHeight() / 2);
             m_vehicleTyres.Add(new Tyre(System.Input.Quadrent.BOTTOM_LEFT, world_, backLeftPosition, m_vehicleBody.GetRotationDegrees()));
 
-            Vector2 backRightPosition = FarseerPhysics.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()) - new Vector2(m_vehicleBody.GetSprite().GetWidth() / 2, m_vehicleBody.GetSprite().GetHeight() / 2);
+            Vector2 backRightPosition = FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()) - new Vector2(m_vehicleBody.GetSprite().GetWidth() / 2, m_vehicleBody.GetSprite().GetHeight() / 2);
             m_vehicleTyres.Add(new Tyre(System.Input.Quadrent.BOTTOM_RIGHT, world_, backRightPosition, m_vehicleBody.GetRotationDegrees()));
 
             // Create joints for each of the wheels to the body
@@ -71,7 +70,7 @@ namespace Project_Cows.Source.Application.Entity.Vehicle {
             m_frontLeftJoint = JointFactory.CreateRevoluteJoint(world_,
                 m_vehicleBody.GetBody(),
                 m_vehicleTyres[0].GetBody(),
-                FarseerPhysics.ConvertUnits.ToSimUnits(new Vector2(-m_vehicleBody.GetSprite().GetWidth() / 2 * 0.8f, -m_vehicleBody.GetSprite().GetHeight() / 2 * 0.7f)),
+                FarseerPhysics.Portable.ConvertUnits.ToSimUnits(new Vector2(-m_vehicleBody.GetSprite().GetWidth() / 2 * 0.8f, -m_vehicleBody.GetSprite().GetHeight() / 2 * 0.7f)),
                 Vector2.Zero, false);
             m_frontLeftJoint.LowerLimit = Util.DegreesToRadians(-10);
             m_frontLeftJoint.UpperLimit = Util.DegreesToRadians(10);
@@ -83,7 +82,7 @@ namespace Project_Cows.Source.Application.Entity.Vehicle {
             m_frontRightJoint = JointFactory.CreateRevoluteJoint(world_,
                 m_vehicleBody.GetBody(),
                 m_vehicleTyres[1].GetBody(),
-                FarseerPhysics.ConvertUnits.ToSimUnits(new Vector2(m_vehicleBody.GetSprite().GetWidth() / 2 * 0.8f, -m_vehicleBody.GetSprite().GetHeight() / 2 * 0.7f)),
+                FarseerPhysics.Portable.ConvertUnits.ToSimUnits(new Vector2(m_vehicleBody.GetSprite().GetWidth() / 2 * 0.8f, -m_vehicleBody.GetSprite().GetHeight() / 2 * 0.7f)),
                 Vector2.Zero, false);
             m_frontRightJoint.LowerLimit = Util.DegreesToRadians(-10);
             m_frontRightJoint.UpperLimit = Util.DegreesToRadians(10);
@@ -95,7 +94,7 @@ namespace Project_Cows.Source.Application.Entity.Vehicle {
             m_backLeftJoint = JointFactory.CreateRevoluteJoint(world_,
                 m_vehicleBody.GetBody(),
                 m_vehicleTyres[2].GetBody(),
-                FarseerPhysics.ConvertUnits.ToSimUnits(new Vector2(-m_vehicleBody.GetSprite().GetWidth() / 2 * 0.8f, m_vehicleBody.GetSprite().GetHeight() / 2 * 0.7f)),
+                FarseerPhysics.Portable.ConvertUnits.ToSimUnits(new Vector2(-m_vehicleBody.GetSprite().GetWidth() / 2 * 0.8f, m_vehicleBody.GetSprite().GetHeight() / 2 * 0.7f)),
                 Vector2.Zero, false);
             m_backLeftJoint.LowerLimit = 0;
             m_backLeftJoint.UpperLimit = 0;
@@ -105,7 +104,7 @@ namespace Project_Cows.Source.Application.Entity.Vehicle {
             m_backRightJoint = JointFactory.CreateRevoluteJoint(world_,
                 m_vehicleBody.GetBody(),
                 m_vehicleTyres[3].GetBody(),
-                FarseerPhysics.ConvertUnits.ToSimUnits(new Vector2(m_vehicleBody.GetSprite().GetWidth() / 2 * 0.8f, m_vehicleBody.GetSprite().GetHeight() / 2 * 0.7f)),
+                FarseerPhysics.Portable.ConvertUnits.ToSimUnits(new Vector2(m_vehicleBody.GetSprite().GetWidth() / 2 * 0.8f, m_vehicleBody.GetSprite().GetHeight() / 2 * 0.7f)),
                 Vector2.Zero, false);
             m_backLeftJoint.LowerLimit = 0;
             m_backLeftJoint.UpperLimit = 0;
@@ -151,7 +150,7 @@ namespace Project_Cows.Source.Application.Entity.Vehicle {
                 float desiredAngle = steeringValue_ * lockAngle;
                 float angleNow = m_frontLeftJoint.JointAngle;
                 float angleToTurn = desiredAngle - angleNow;
-                angleToTurn = FarseerPhysics.Common.MathUtils.Clamp(angleToTurn, -turnPerTimeStep, turnPerTimeStep);
+                angleToTurn = FarseerPhysics.Portable.Common.MathUtils.Clamp(angleToTurn, -turnPerTimeStep, turnPerTimeStep);
                 float newAngle = angleNow + angleToTurn;
 
                 if (desiredAngle > 0.25) {
@@ -176,12 +175,12 @@ namespace Project_Cows.Source.Application.Entity.Vehicle {
                 }
             }
 
-            Debug.AddText("Body position D: " + FarseerPhysics.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()).ToString(), new Vector2(10, 300));
+            Debug.AddText("Body position D: " + FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(m_vehicleBody.GetPosition()).ToString(), new Vector2(10, 300));
             Debug.AddText("Body position S: " + m_vehicleBody.GetPosition().ToString(), new Vector2(10, 320));
-            Debug.AddText("FL position D: " + FarseerPhysics.ConvertUnits.ToDisplayUnits(m_vehicleTyres[0].GetPosition()).ToString(), new Vector2(10, 360));
+            Debug.AddText("FL position D: " + FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(m_vehicleTyres[0].GetPosition()).ToString(), new Vector2(10, 360));
             Debug.AddText("FL position S: " + m_vehicleTyres[0].GetPosition().ToString(), new Vector2(10, 380));
             Debug.AddText("FL rotation: " + Util.RadiansToDegrees(m_frontLeftJoint.JointAngle).ToString(), new Vector2(10, 400));
-            Debug.AddText("FR position D: " + FarseerPhysics.ConvertUnits.ToDisplayUnits(m_vehicleTyres[1].GetPosition()).ToString(), new Vector2(10, 420));
+            Debug.AddText("FR position D: " + FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(m_vehicleTyres[1].GetPosition()).ToString(), new Vector2(10, 420));
             Debug.AddText("FR position S: " + m_vehicleTyres[1].GetPosition().ToString(), new Vector2(10, 440));
             Debug.AddText("FR rotation: " + Util.RadiansToDegrees(m_frontRightJoint.JointAngle).ToString(), new Vector2(10, 460));
             m_vehicleBody.UpdateSprites();

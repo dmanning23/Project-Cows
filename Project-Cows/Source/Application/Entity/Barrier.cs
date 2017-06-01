@@ -14,9 +14,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using FarseerPhysics.Dynamics;
 
 using Project_Cows.Source.System;
+using FarseerPhysics.Portable.Dynamics;
 
 namespace Project_Cows.Source.Application.Entity{
     class Barrier : Entity {

@@ -14,12 +14,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using FarseerPhysics.Dynamics;
-using FarseerPhysics.Factories;
-
 using Project_Cows.Source.System;
 using Project_Cows.Source.System.Graphics;
 using Project_Cows.Source.System.Graphics.Sprites;
+using FarseerPhysics.Portable.Dynamics;
+using FarseerPhysics.Portable.Factories;
 
 namespace Project_Cows.Source.Application.Entity {
     public class Entity {
@@ -35,20 +34,20 @@ namespace Project_Cows.Source.Application.Entity {
             // Entity constructor
             // ================
             
-            fs_body = BodyFactory.CreateRectangle(world_, FarseerPhysics.ConvertUnits.ToSimUnits(texture_.Width), FarseerPhysics.ConvertUnits.ToSimUnits(texture_.Height), 1f, FarseerPhysics.ConvertUnits.ToSimUnits(position_));
+            fs_body = BodyFactory.CreateRectangle(world_, FarseerPhysics.Portable.ConvertUnits.ToSimUnits(texture_.Width), FarseerPhysics.Portable.ConvertUnits.ToSimUnits(texture_.Height), 1f, FarseerPhysics.Portable.ConvertUnits.ToSimUnits(position_));
             fs_body.BodyType = bodyType_;
             fs_body.Mass = mass_;
             fs_body.Restitution = restitution_;
             fs_body.Rotation = Util.DegreesToRadians(rotation_);
 
-            m_sprite = new Sprite(texture_, FarseerPhysics.ConvertUnits.ToDisplayUnits(fs_body.Position), fs_body.Rotation, new Vector2(1.0f, 1.0f));
+            m_sprite = new Sprite(texture_, FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(fs_body.Position), fs_body.Rotation, new Vector2(1.0f, 1.0f));
         }
 
 		public void UpdateSprites() {
 			// Updates the position and rotation of the entity's sprite
 			// ================
 
-			m_sprite.SetPosition(FarseerPhysics.ConvertUnits.ToDisplayUnits(fs_body.Position));
+			m_sprite.SetPosition(FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(fs_body.Position));
 			m_sprite.SetRotationDegrees(Util.RadiansToDegrees(fs_body.Rotation));
 		}
 
@@ -66,7 +65,7 @@ namespace Project_Cows.Source.Application.Entity {
         }
 
         public Vector2 GetPositionDisplay() {
-            return FarseerPhysics.ConvertUnits.ToDisplayUnits(GetPosition());
+            return FarseerPhysics.Portable.ConvertUnits.ToDisplayUnits(GetPosition());
         }
 
         public float GetRotationDegrees() {
@@ -92,7 +91,7 @@ namespace Project_Cows.Source.Application.Entity {
         }
 
 		public void SetPosition(Vector2 position_) {
-            fs_body.Position = FarseerPhysics.ConvertUnits.ToSimUnits(position_);
+            fs_body.Position = FarseerPhysics.Portable.ConvertUnits.ToSimUnits(position_);
         }
 
 		public void SetRotationDegrees(float degrees_) {

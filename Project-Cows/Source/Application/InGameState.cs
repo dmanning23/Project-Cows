@@ -20,8 +20,6 @@ using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 
-using FarseerPhysics.Dynamics;
-
 using Project_Cows.Source.Application.Entity.Vehicle;
 using Project_Cows.Source.Application.Entity;
 using Project_Cows.Source.Application.Track;
@@ -31,6 +29,7 @@ using Project_Cows.Source.System.Graphics.Sprites;
 using Project_Cows.Source.System.Input;
 using Project_Cows.Source.System.StateMachine;
 using Project_Cows.Source.System;
+using FarseerPhysics.Portable.Dynamics;
 
 namespace Project_Cows.Source.Application {
 	class InGameState : State {
@@ -78,7 +77,7 @@ namespace Project_Cows.Source.Application {
 			// Initialise in-game state
 			// ================
 
-            fs_world = new FarseerPhysics.Dynamics.World(Vector2.Zero);
+            fs_world = new World(Vector2.Zero);
 
             m_background = new Sprite(TextureHandler.gameTrack, new Vector2(Settings.m_screenWidth / 2, Settings.m_screenHeight / 2), 0.0f, Vector2.One);
 			m_grassbackground = new Sprite(TextureHandler.gameBackground, new Vector2(0.0f, 0.0f), 0.0f, new Vector2(2.0f, 2.0f));

@@ -14,7 +14,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using FarseerPhysics.Dynamics;
+using FarseerPhysics.Portable.Dynamics;
 
 namespace Project_Cows.Source.Application.Track {
     public class CheckpointContainer {
